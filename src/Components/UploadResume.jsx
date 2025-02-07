@@ -2,6 +2,8 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
 import "./UploadResume.css";
 function UploadResume() {
   const VisuallyHiddenInput = styled("input")({
@@ -79,16 +81,27 @@ function UploadResume() {
   return (
     <div className="container">
       <div className="form-container">
-        <h2 class = "pb-4">Step {steps} of 7</h2>
+        <h2 class="pb-4">Step {steps} of 7</h2>
 
         {steps === 1 && (
           <div className="form-step">
-            
             <div className="resume-section">
-               
               <div className="resume-submit">
                 <p className="upload-resume-text">Upload Your Resume</p>
-               
+                <Button
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  tabIndex={-1}
+                  startIcon={<CloudUploadIcon />}
+                >
+                  Upload files
+                  <VisuallyHiddenInput
+                    type="file"
+                    onChange={(event) => console.log(event.target.files)}
+                    multiple
+                  />
+                </Button>
               </div>
             </div>
             <h3>Personal Details</h3>
@@ -147,7 +160,7 @@ function UploadResume() {
                   handleChange(
                     "academicDetails",
                     "highestQualifications",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -195,7 +208,7 @@ function UploadResume() {
                   handleChange(
                     "skillsAndCertifications",
                     "programmingSkills",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -210,7 +223,7 @@ function UploadResume() {
                   handleChange(
                     "skillsAndCertifications",
                     "technicalSkills",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -233,7 +246,7 @@ function UploadResume() {
                   handleChange(
                     "workAndExperience",
                     "internships",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -248,7 +261,7 @@ function UploadResume() {
                   handleChange(
                     "workAndExperience",
                     "workExperience",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -282,7 +295,7 @@ function UploadResume() {
                   handleChange(
                     "extracurricular",
                     "clubsAndSocieties",
-                    e.target.value
+                    e.target.value,
                   )
                 }
                 fullWidth
@@ -330,7 +343,7 @@ function UploadResume() {
                 handleChange(
                   "behavioralAndPsychometric",
                   "problemSolving",
-                  e.target.value
+                  e.target.value,
                 )
               }
               fullWidth
