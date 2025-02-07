@@ -3,6 +3,7 @@ import Team from "./Components/Team.jsx"
 import Contact from "./Components/Contact.jsx"
 import Registration from "./Components/Registration.jsx"
 import Login from "./Components/Login.jsx"
+import UploadResume from "./Components/UploadResume.jsx"
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom"
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route path = "/contact" element = {<Contact></Contact>}></Route>
           <Route path = "/registration" element = {<Registration></Registration>}></Route>
           <Route path = "/login" element = {<Login></Login>}></Route>
+          <Route path = "/resume" element = {<UploadResume></UploadResume>}></Route>
+          <Route path = "/all_companies" element = {<UploadResume></UploadResume>}></Route>
         </Routes>
       </Router>
       
