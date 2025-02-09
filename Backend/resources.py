@@ -64,7 +64,6 @@ class UserRegistration(Resource):
             return ""
 
 
-    @cross_origin(origins="http://localhost:5173")
     def post(self):
         """
         Use content-type: multipart/form-data while sending the data

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, Response
 from flask_restful import Api
 from flask_cors import CORS
 from models import db
@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 
 
 app = Flask(__name__)
-CORS(app)
 api = Api(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 load_dotenv()
@@ -26,6 +26,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
+
+# @app.before_request
+# def handle_preflight():
+#     if request.method == "OPTIONS":
+#         res = Response()
+#         print("Hey")
+#         res.headers['X-Content-Type-Options'] = '*'
+#         return res
 
 
 db.init_app(app)

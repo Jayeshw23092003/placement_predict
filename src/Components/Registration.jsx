@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { ORIGIN } from "./Constants.js";
 import { content } from "flowbite-react/tailwind";
+
 function Registration() {
   const [data, setData] = useState({
     full_name: "",
