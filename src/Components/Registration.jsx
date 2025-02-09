@@ -25,36 +25,47 @@ function Registration() {
   };
 
   const register = async () => {
+    const actor = document.getElementsByClassName("default-radio");
     
-    const actor = document.getElementsByClassName("default-radio")
-    let is_student = Array.from(actor).some(i=>i.checked && i.value === "student");
-    setData((prevData)=>({
-      ...prevData, actor : !is_student 
-    }))
-   console.log(is_student)
-    
+    // Determine if the user is a student
+    let is_student = Array.from(actor).some(i => i.checked && i.value === "student");
+  
+    // Update state (asynchronously)
+    setData((prevData) => ({
+      ...prevData,
+      actor: !is_student, // If student, actor is false; else true
+    }));
+  
+    console.log("Is Student:", is_student);
+  
     let url = ORIGIN + "/register";
-    console.log(data);
+    console.log("Before Sending:", { ...data, actor: !is_student }); // Ensure latest state
+  
     alert("Jayesh");
+  
+    // Wait for the state update to complete before sending the request
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      data: JSON.stringify({full_name : data.full_name, email : data.email, password : data.password, actor : data.actor}),
+      body: JSON.stringify({
+        full_name: data.full_name,
+        email: data.email,
+        password: data.password,
+        actor: !is_student, // Use updated value directly
+      }),
     });
-    const json_reponse = await response.json();
-    console.log(json_reponse)
-    alert("/hello")
-    if(json_reponse.success)
-    {
-      Navigate("/login")
-    }
-    else
-    {
-      alert("Some internal issue has occured")
+  
+    // Handle response
+    const json_response = await response.json();
+    if (json_response.status === 200) {
+      Navigate("/login");
+    } else {
+      alert("Some internal issue has occurred");
     }
   };
+  
 
   const Navigate = useNavigate();
 
@@ -77,7 +88,7 @@ function Registration() {
             id="full_name"
             value={data.full_name}
             onChange={handleChange}
-            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-black dark:focus:border-blue-500"
             placeholder=""
             required
           />
@@ -95,7 +106,7 @@ function Registration() {
             id="email"
             value={data.email}
             onChange={handleChange}
-            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-black dark:focus:border-blue-500"
             placeholder=" "
             required
           />
@@ -113,7 +124,7 @@ function Registration() {
             value={data.password}
             id="password"
             onChange={handleChange}
-            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-black dark:focus:border-blue-500"
             placeholder=" "
             required
           />
@@ -131,7 +142,7 @@ function Registration() {
             id="repeat_password"
             value={data.repeat_password}
             onChange={handleChange}
-            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-black dark:focus:border-blue-500"
             placeholder=" "
             required
           />
@@ -152,7 +163,7 @@ function Registration() {
               onChange={handleChange}
               name="contact"
               id="contact"
-              class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+              class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-black dark:focus:border-blue-500"
               placeholder=" "
               required
             />
@@ -202,7 +213,7 @@ function Registration() {
         <button
           type="submit"
           onClick={SubmitData}
-          class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Submit
         </button>
