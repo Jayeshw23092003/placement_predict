@@ -25,6 +25,7 @@ function Registration() {
   };
 
   const register = async () => {
+    
     const actor = document.getElementsByClassName("default-radio")
     let is_student = Array.from(actor).some(i=>i.checked && i.value === "student");
     setData((prevData)=>({
@@ -43,6 +44,8 @@ function Registration() {
       data: JSON.stringify({full_name : data.full_name, email : data.email, password : data.password, actor : data.actor}),
     });
     const json_reponse = await response.json();
+    console.log(json_reponse)
+    alert("/hello")
     if(json_reponse.success)
     {
       Navigate("/login")
