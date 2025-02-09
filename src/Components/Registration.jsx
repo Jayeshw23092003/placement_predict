@@ -40,7 +40,7 @@ function Registration() {
       headers: {
         "Content-Type": "application/json",
       },
-      data: JSON.stringify({full_name : data.full_name, email : data.email, password : data.password}),
+      data: JSON.stringify({full_name : data.full_name, email : data.email, password : data.password, actor : data.actor}),
     });
     const json_reponse = await response.json();
     if(json_reponse.success)
