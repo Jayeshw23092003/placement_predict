@@ -1,5 +1,6 @@
 from flask_restful import Resource
 from flask import request, jsonify
+from flask_cors import cross_origin
 from werkzeug.utils import secure_filename
 from models import db, User, Job
 from PyPDF2 import PdfReader
@@ -63,7 +64,7 @@ class UserRegistration(Resource):
             return ""
 
 
-
+    @cross_origin(origins="http://localhost:5173")
     def post(self):
         """
         Use content-type: multipart/form-data while sending the data
