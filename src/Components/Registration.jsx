@@ -25,33 +25,47 @@ function Registration() {
   };
 
   const register = async () => {
-    const actor = document.getElementsByClassName("default-radio")
-    let is_student = Array.from(actor).some(i=>i.checked && i.value === "student");
-    setData((prevData)=>({
-      ...prevData, actor : !is_student 
-    }))
-   console.log(is_student)
+    const actor = document.getElementsByClassName("default-radio");
     
+    // Determine if the user is a student
+    let is_student = Array.from(actor).some(i => i.checked && i.value === "student");
+  
+    // Update state (asynchronously)
+    setData((prevData) => ({
+      ...prevData,
+      actor: !is_student, // If student, actor is false; else true
+    }));
+  
+    console.log("Is Student:", is_student);
+  
     let url = ORIGIN + "/register";
-    console.log(data);
+    console.log("Before Sending:", { ...data, actor: !is_student }); // Ensure latest state
+  
     alert("Jayesh");
+  
+    // Wait for the state update to complete before sending the request
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      data: JSON.stringify({full_name : data.full_name, email : data.email, password : data.password, actor : data.actor}),
+      body: JSON.stringify({
+        full_name: data.full_name,
+        email: data.email,
+        password: data.password,
+        actor: !is_student, // Use updated value directly
+      }),
     });
-    const json_reponse = await response.json();
-    if(json_reponse.success)
-    {
-      Navigate("/login")
-    }
-    else
-    {
-      alert("Some internal issue has occured")
+  
+    // Handle response
+    const json_response = await response.json();
+    if (json_response.status === 200) {
+      Navigate("/login");
+    } else {
+      alert("Some internal issue has occurred");
     }
   };
+  
 
   const Navigate = useNavigate();
 
