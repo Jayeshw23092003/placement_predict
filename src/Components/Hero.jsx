@@ -8,8 +8,13 @@ function Hero() {
           <div class="-mx-4 -mb-10 flex flex-wrap text-center">
             <div class="mb-10 px-4 sm:w-1/2">
               <div class="h-64 overflow-hidden rounded-lg">
-                <div class="pb-10">
-                  <span class="text-4xl font-bold">PlaceAI</span>
+                <div class="pb-10 d-flex flex-row">
+                  <div>
+                    <span class="text-4xl font-bold">CareerCatalyst</span>
+                  </div>
+                  <div>
+                    <img class = "h-12" src="/pp.png" alt="" />
+                  </div>
                 </div>
                 <p class = "">
                   An advanced AI-powered placement prediction system designed to
@@ -33,7 +38,7 @@ function Hero() {
               </button>
             </div>
             <div class="mb-10 px-4 sm:w-1/2">
-              <div class="h-80 overflow-hidden rounded-lg">
+              <div class="h-full overflow-hidden rounded-lg">
                 <img
                   alt="content"
                   class="h-full w-full object-cover object-center"
