@@ -5,6 +5,8 @@ import Registration from "./Components/Registration.jsx"
 import Login from "./Components/Login.jsx"
 import UploadResume from "./Components/UploadResume.jsx"
 import Profile from "./Components/Profile.jsx"
+import CompanyList from "./Components/CompanyList.jsx"
+import CompanyDetails from './Components/CompanyDetails.jsx';
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom"
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
           <Route path = "/resume" element = {<UploadResume></UploadResume>}></Route>
           <Route path = "/all_companies" element = {<UploadResume></UploadResume>}></Route>
           <Route path = "/profile" element = {<Profile></Profile>}></Route>
+          <Route path = "/company_list" element = {<CompanyList/>}></Route>
+          <Route path="/company/:id" element={<CompanyDetails />} />
         </Routes>
-      </Router>
+      </Router>mpany_list
       
     </div>
   );

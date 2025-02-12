@@ -1,31 +1,23 @@
-import React, {useState, useEffect} from 'react'
-import { ORIGIN } from './Constants'
-let url = ORIGIN+"/companies"
+
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
+
 function CompanyList() {
-   const [companies, setCompanies] = useState([])
-   const GetCompaniesData = async()=>{
-       try{
-            const company_data = await fetch(url, {
-                method : "GET",
-                headers : {
-                    "Content-Type" : "application/json"
-                }
-            })
-            
-            const all_companies = await company_data.json();
-            if(Array.isArray(all_companies) && all_companies.length > 0)
-            {
-                setCompanies(all_companies)
-            }
-       }
-       catch(er)
-       {
-        console.log(er)
-       }
-   }
-   useEffect(()=>{
-        GetCompaniesData()
-   }, [])
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://your-backend-api.com/companies'); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setCompanies(data); 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
   return (
     <div>
       
@@ -47,10 +39,6 @@ function CompanyList() {
             </li>
         ))
       }
-        
-
-    </div>
-  )
 }
 
-export default CompanyList
+export default CompanyList;

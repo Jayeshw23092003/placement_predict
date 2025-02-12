@@ -42,5 +42,17 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.4.2",
     "vite": "^5.2.0"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jayeshw23092003/placement_predict.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jayeshw23092003/placement_predict/issues"
+  },
+  "homepage": "https://github.com/Jayeshw23092003/placement_predict#readme"
 }
