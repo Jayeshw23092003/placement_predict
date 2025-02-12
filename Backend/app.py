@@ -5,11 +5,9 @@ from models import db
 from resources import AddUserToJobResource, JobResource, ShortlistStudents, UserLogin, UserRegistration
 import os
 from dotenv import load_dotenv
-
-
 app = Flask(__name__)
-CORS(app)
 api = Api(app)
+CORS(app, resources={r"/*":{"origins" : "*"}})
 
 
 load_dotenv()
@@ -18,7 +16,7 @@ host = os.getenv("MYSQL.HOST")
 port = os.getenv("MYSQL.PORT")
 user = os.getenv("MYSQL.USER")
 password = os.getenv("MYSQL.PASSWORD")
-database = os.getenv("MYSQL.DATABASE")
+database = os.getenv("MYSQL.PROJECT")
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}'
@@ -37,4 +35,6 @@ api.add_resource(AddUserToJobResource, '/addUserToJob')
 api.add_resource(ShortlistStudents, '/shortlistStudents')
 
 if __name__ == '__main__':
+    # with app.app_context():
+    #     db.create_all()
     app.run(debug=True)

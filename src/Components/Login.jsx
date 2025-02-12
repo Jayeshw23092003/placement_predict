@@ -3,7 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ORIGIN } from "./Constants";
 import { useNavigate } from "react-router-dom";
-const url = ORIGIN+"/register"
+
+const url = ORIGIN+"/login"
 function Login() {
   const Navigate = useNavigate();
   const [data, setData] = useState(
@@ -20,32 +21,39 @@ function Login() {
     }))
   }
 
-  const SubmitData=async()=>{
-    console.log(data)
-    alert("Jayesh")
-    const is_user_ = await fetch(url, {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
-      },
-      data : JSON.stringify({email : data.email, password : data.password})
-    })
-    const is_user = await is_user_.json()
-    if(!is_user)
-    {
-      alert("Invalid Credentials")
+ 
+
+const SubmitData = async (e) => {
+    e.preventDefault();  // Prevents default form submission
+    console.log(data);
+    
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: data.email, password: data.password })
+        });
+        if (!response.ok) {
+            console.log("Error:", response.status);
+            alert("Invalid Credentials");
+            return;
+        }
+        const is_user = await response.json();
+        console.log("Response Data:", is_user);
+        if (is_user.actor) {
+            Navigate("/profile");
+        } else {
+            Navigate("/resume");
+        }
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Failed to connect to the server");
     }
-    else{
-      if(is_user.actor)
-      {
-        Navigate("/profile")
-      }
-      else
-      {
-        Navigate("/resume")
-      }
-    }
-  }
+};
+
   return (
     <div>
       <Header></Header>
