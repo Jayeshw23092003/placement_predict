@@ -18,8 +18,8 @@ function Header() {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg> */}
-            <img class = "h-12" src="/pp.png" alt="" />
-            <span class="ml-3 text-xl">CareerCatalyst </span>
+            <img class = "h-5" src="/pp.png" alt="" />
+            <span class="ml-3 text-xs text-gray-700">CareerCatalyst </span>
           </a>
           <nav class="flex flex-wrap items-center justify-center text-base md:ml-4	md:mr-auto md:border-l md:border-gray-400 md:py-1 md:pl-4">
             <a href = "/" class="mr-5 hover:text-gray-900">Home</a>
