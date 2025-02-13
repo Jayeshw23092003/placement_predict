@@ -41,8 +41,9 @@ const SubmitData = async (e) => {
             return;
         }
         const is_user = await response.json();
-        console.log("Response Data:", is_user);
-        if (is_user.actor) {
+        console.log("Response Data:", is_user.user.actor);
+        if (is_user.user.actor) {
+            alert("To Profile")
             Navigate("/profile");
         } else {
             Navigate("/resume");

@@ -94,9 +94,9 @@ class UserRegistration(Resource):
         #     resume_text = UserRegistration.extract_text_from_pdf(resume_url)
 
 
-        # new_user = User(name=name, email=email, password=password, actor=actor)
-        # db.session.add(new_user)
-        # db.session.commit()
+        new_user = User(name=name, email=email, password=password, actor=actor)
+        db.session.add(new_user)
+        db.session.commit()
 
         return {'message': 'User registered successfully', 'user': {'name': name, 'email': email}}, 200
 

@@ -26,7 +26,7 @@ function Registration() {
   };
 
   const register = async (event) => {
-    event.preventDefault();
+   
     const actor = document.getElementsByClassName("default-radio");
 
     // Determine if the user is a student
@@ -45,12 +45,12 @@ function Registration() {
         const response = await fetch("http://localhost:5000/register", {
             method: "POST",
             headers: {
-                "Content-Type": ""
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(updatedData),
         });
         const json_response = await response.json();
-        if (json_response.status === 200) {
+        if (response.ok) {
             Navigate("/login");
         } else {
             alert("Some internal issue has occurred");
