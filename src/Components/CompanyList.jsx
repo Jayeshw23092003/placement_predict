@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 
-function CompanyList() {
+export function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -18,6 +18,7 @@ function CompanyList() {
         console.error('Error fetching data:', error);
       }
     };
+})
   return (
     <div>
       
@@ -39,6 +40,6 @@ function CompanyList() {
             </li>
         ))
       }
+      </div>
+  )
 }
-
-export default CompanyList;
