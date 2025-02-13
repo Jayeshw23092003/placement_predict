@@ -103,11 +103,14 @@ function CompanyList() {
       </button>
 
       
-      <AddCompanyForm
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSave={handleSaveCompany}
-      />
+      {isModalOpen && (
+    <div className="mb-6">
+      <AddCompanyForm isOpen={isModalOpen} 
+       onClose={() => setIsModalOpen(false)}
+       onSave={handleSaveCompany} />
+    </div>
+  )}
+
 
       <div className=" m-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {data.map((company) => (
