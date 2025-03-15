@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ORIGIN } from "./Constants";
 import { useNavigate } from "react-router-dom";
+import ResponsiveAppBar from "./AppBar";
 
 const url = ORIGIN+"/login"
 function Login() {
@@ -40,6 +41,7 @@ const SubmitData = async (e) => {
             alert("Invalid Credentials");
             return;
         }
+        localStorage.setItem("login", true)
         const is_user = await response.json();
         console.log("Response Data:", is_user.user.actor);
         if (is_user.user.actor) {
@@ -57,7 +59,7 @@ const SubmitData = async (e) => {
 
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
           <a

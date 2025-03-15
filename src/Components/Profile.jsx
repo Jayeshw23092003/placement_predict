@@ -5,6 +5,7 @@ import DataTable from "./ProfilePage/Table";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Box } from "@mui/material";
+import ResponsiveAppBar from "./AppBar";
 const Profile = () => {
   const user = {
     name: "Taniya",
@@ -13,7 +14,7 @@ const Profile = () => {
   };
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <Box>
         <Navbar />
         <Box sx={{ display: "flex" }}>

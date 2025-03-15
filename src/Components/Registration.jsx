@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { ORIGIN } from "./Constants.js";
 import { content } from "flowbite-react/tailwind";
+import ResponsiveAppBar from "./AppBar.jsx";
 
 function Registration() {
   const [data, setData] = useState({
@@ -72,7 +73,7 @@ function Registration() {
 
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <div class="pt-24">
         <h1 class="text-center text-2xl font-bold">Register Here</h1>
       </div>

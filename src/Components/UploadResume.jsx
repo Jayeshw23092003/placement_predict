@@ -6,6 +6,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./UploadResume.css";
+import ResponsiveAppBar from "./AppBar";
 function UploadResume() {
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -81,7 +82,7 @@ function UploadResume() {
 
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <div className="container">
         
         <div className="form-container">

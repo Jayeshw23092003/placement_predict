@@ -18,10 +18,10 @@ const pages = ["Home", "Companies", "Students"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
-    const Navigate = useNavigate();
+  const Navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [login, setLogin] = React.useState(false);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -32,156 +32,115 @@ function ResponsiveAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  const navigateToRegister = () => {
+    handleCloseUserMenu();
+    Navigate("/login");
+  };
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const navigateToCompaniesDashboard=()=>{
-    Navigate("/companies_dashboard")
+  const navigateToCompaniesDashboard = () => {
+    Navigate("/companies_dashboard");
     setAnchorElNav(null);
-  }
-  const navigateToStudentsDashboard=()=>{
-    Navigate("/students_dashboard")
+  };
+  const navigateToStudentsDashboard = () => {
+    Navigate("/students_dashboard");
     setAnchorElNav(null);
-  }
-  const navigateToHomeDashboard=()=>{
-    Navigate("/")
+  };
+  const navigateToHomeDashboard = () => {
+    Navigate("/");
     setAnchorElNav(null);
-  }
-
+  };
+  React.useEffect(() => {
+    const isLoggedIn = localStorage.getItem("login");
+    if (isLoggedIn) {
+      setLogin(isLoggedIn);
+    }
+  }, []);
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img class="h-[4rem]" src="./pp.png" alt="" />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            CareerCatalyst
-          </Typography>
+   
+      
+          <div class="flex flex-row justify-between items-center">
+            <div class="flex flex-row pl-[2rem] gap-10 items-center">
+              <img class="h-[4rem]" src="./pp.png" alt="" />
+              <Typography
+                
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                CareerCatalyst
+              </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Career Catalyst
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-             
-              onClick={navigateToHomeDashboard}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-             Home
-            </Button>
-            <Button
-          
-              onClick={navigateToCompaniesDashboard}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-             Companies
-            </Button>
-            <Button
-             
-              onClick={navigateToStudentsDashboard}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-             Students
-            </Button>
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+              {login && (
+                <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                  <Button
+                    onClick={navigateToHomeDashboard}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Home
+                  </Button>
+                  <Button
+                    onClick={navigateToCompaniesDashboard}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Companies
+                  </Button>
+                  <Button
+                    onClick={navigateToStudentsDashboard}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Students
+                  </Button>
+                </Box>
+              )}
+            </div>
+            <div class="pr-[2rem]">
+              <Box sx={{ flexGrow: 0 }}>
+                {login ? <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip> : <Button onClick={()=>Navigate("/login")} variant="contained" color="success">Login</Button>}
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem onClick={navigateToRegister}>
+                    <Typography sx={{ textAlign: "center" }}>Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            </div>
+          </div>
+      
     </AppBar>
   );
 }

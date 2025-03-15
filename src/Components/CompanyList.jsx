@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AddCompanyForm from "./CompanyForm";
 import Header from "./Header";
 import Footer from "./Footer";
+import ResponsiveAppBar from "./AppBar";
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -99,7 +100,7 @@ function CompanyList() {
 
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <div className=" mx-20 mt-4 border-2 border-gray-600 p-8 shadow-2xl">
         <button
           onClick={() => setIsModalOpen(true)}
