@@ -20,7 +20,7 @@ function Hero() {
                   An advanced AI-powered placement prediction system designed to
                   analyze academic performance, skill sets, and industry trends
                   to provide highly accurate career insights. By leveraging
-                  cutting-edge machine learning algorithms, PlaceAI evaluates
+                  cutting-edge machine learning algorithms, CareerCatalyst evaluates
                   key factors such as grades, technical proficiency,
                   internships, and extracurricular achievements to generate
                   personalized job readiness recommendations. Our intelligent
@@ -28,7 +28,7 @@ function Hero() {
                   suggests areas for improvement, ensuring students enhance
                   their employability and secure the best opportunities. Whether
                   you're aiming for your dream job or looking to refine your
-                  skills, PlaceAI empowers you with data-driven guidance for a
+                  skills, CareerCatalyst empowers you with data-driven guidance for a
                   successful career journey. 🚀🎯
                 </p>
               </div>
