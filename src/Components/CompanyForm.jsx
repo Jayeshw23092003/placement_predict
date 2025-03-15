@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CompanyForm({ isOpen, onClose, onSave }) {
+function CompanyForm({ isOpen, onClose }) {
   const [newCompany, setNewCompany] = useState({
     id: '',
     name: '',
@@ -15,9 +15,16 @@ function CompanyForm({ isOpen, onClose, onSave }) {
     setNewCompany({ ...newCompany, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    onSave(newCompany); 
+    const response = await fetch("http://localhost:5000/job", {
+      method: "POST",
+      headers :{
+        "Content-Type" : "application/json" 
+      },
+      body : JSON.stringify(newCompany)
+    })  
+
     onClose(); 
   };
 

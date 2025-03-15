@@ -8,10 +8,7 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 api = Api(app)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-
 load_dotenv()
-
 host = os.getenv("MYSQL.HOST")
 port = os.getenv("MYSQL.PORT")
 user = os.getenv("MYSQL.USER")
@@ -35,7 +32,6 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 
 db.init_app(app)
-
 api.add_resource(UserRegistration, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobResource, '/job')

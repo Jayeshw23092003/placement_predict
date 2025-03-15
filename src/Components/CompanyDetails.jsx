@@ -8,7 +8,7 @@ function CompanyDetails() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const response = await fetch(`https://your-backend-api.com/companies/${id}`); // Replace with your backend API endpoint
+        const response = await fetch(`https://localhost/companies/${id}`); // Replace with your backend API endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -44,7 +44,7 @@ const SubmitData = async (e) => {
         console.log("Response Data:", is_user.user.actor);
         if (is_user.user.actor) {
             alert("To Profile")
-            Navigate("/profile");
+            Navigate("/company_list");
         } else {
             Navigate("/resume");
         }
