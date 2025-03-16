@@ -10,6 +10,7 @@ from datetime import datetime
 
 
 class UserLogin(Resource):
+    
     def post(self):
 
         data = request.get_json()

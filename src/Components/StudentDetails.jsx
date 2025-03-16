@@ -100,6 +100,53 @@ const StudentDetails = () => {
         communicationSkills: "Excellent",
       },
     },
+    {
+      id: 3,
+      personal: {
+        name: "Jane Smith",
+        email: "jane.smith@example.com",
+        phone: "+9876543210",
+        gender: "Female",
+        category: "OBC",
+      },
+      academicDetails: {
+        highestQualifications: "M.Tech",
+        currentCGPA: "9.0",
+        ssc: "95%",
+        hsc: "90%",
+        backlogs: "1",
+        educationalGap: "Yes",
+        branch: "Information Technology",
+      },
+      skillsAndCertifications: {
+        programmingSkills: "Java, Python",
+        technicalSkills: "Spring Boot, SQL",
+        certifications: "Oracle Certified, Microsoft Azure",
+        projects: "Library Management System, Online Quiz Platform",
+        hackathonParticipation: "2",
+      },
+      workAndExperience: {
+        internships: "1 internship completed",
+        workExperience: "6 months at ABC Corp",
+        researchPublications: "1 paper published",
+      },
+      extracurricular: {
+        softSkills: "Teamwork, Time Management",
+        clubsAndSocieties: "Robotics Club, Literary Society",
+        sportsParticipation: "Badminton",
+      },
+      preferences: {
+        domain: "Data Science",
+        location: "Pune",
+        jobRole: "Data Analyst",
+        salaryRange: "6-10 LPA",
+      },
+      behavioralAndPsychometric: {
+        problemSolving: "Good",
+        aptitudeTestScore: "80%",
+        communicationSkills: "Excellent",
+      },
+    }
   ];
 
   useEffect(() => {

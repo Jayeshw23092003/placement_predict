@@ -45,7 +45,7 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
   const navigateToStudentsDashboard = () => {
-    Navigate("/students_dashboard");
+    Navigate("/students");
     setAnchorElNav(null);
   };
   const navigateToHomeDashboard = () => {

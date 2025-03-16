@@ -25,7 +25,6 @@ const StudentList = () => {
           },
         ];
 
-        // Simulate API delay
         setTimeout(() => {
           setStudents(dummyData);
         }, 1000);
@@ -45,7 +44,7 @@ const StudentList = () => {
         </h1>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
-            <thead className="bg-gray-50 dark:bg-gray-800">
+            <thead className="bg-gray-50 dark:bg-blue-600">
               <tr>
                 <th className="py-3 px-4 text-left text-sm font-semibold text-white uppercase border-r border-gray-200">
                   ID
