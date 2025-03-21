@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 function CompanyDetails() {
   const { id } = useParams(); 
-  const [company, setCompany] = useState(null);
+  const [company, setCompany] = useState({name : "a", desc : "desc", website : "wens", founded : "2323", industry : "ssdd"});
 
   useEffect(() => {
     const fetchCompanyDetails = async () => {
