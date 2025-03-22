@@ -35,7 +35,7 @@ function CompanyDetails() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const response = await fetch(`https://localhost/companies/${id}`); // Replace with your backend API endpoint
+        const response = await fetch(`https://localhost/company?id=${id}`); // Replace with your backend API endpoint
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -44,8 +44,7 @@ function CompanyDetails() {
       } catch (error) {
         console.error("Error fetching company details:", error);
       }
-    };
-
+    }
     fetchCompanyDetails();
   }, [id]);
 
