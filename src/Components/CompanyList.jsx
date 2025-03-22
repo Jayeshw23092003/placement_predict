@@ -55,7 +55,7 @@ function CompanyList() {
       <div className="mx-20 mt-4 rounded-lg border-2 border-gray-300 bg-blue-950 p-8 shadow-2xl">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="absolute right-40 top-3 mb-4 mt-2 rounded-lg bg-gradient-to-r from-blue-900 to-blue-950 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500"
+          className="absolute right-40 top-3 mb-4 mt-2 rounded-lg bg-gradient-to-r from-blue-900 to-blue-950 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-900"
         >
           Add Company
         </button>
@@ -77,7 +77,7 @@ function CompanyList() {
               className="relative transform rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform duration-300 hover:scale-105"
             >
            
-              <div className="absolute left-0 right-0 top-0 h-1/5 rounded-t-lg bg-gradient-to-r from-blue-500 to-blue-500"></div>
+              <div className="absolute left-0 right-0 top-0 h-1/5 rounded-t-lg bg-gradient-to-r from-sky-600 to-sky-700"></div>
 
         
               <div className="relative z-10">
@@ -105,7 +105,7 @@ function CompanyList() {
 
                 <Link
                   to={`/company/${company.id}`}
-                  className="mt-4 inline-flex items-center rounded-lg bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-sky-600 focus:outline-none focus:ring-4 focus:ring-cyan-300"
+                  className="mt-4 inline-flex items-center rounded-lg bg-sky-600 px-3 py-2 text-center text-sm font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-4 focus:ring-cyan-300"
                 >
                   Explore
                   <svg

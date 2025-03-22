@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom'; 
-
+import Footer from "./Footer";
+import ResponsiveAppBar from "./AppBar";
 function CompanyDetails() {
   const { id } = useParams(); 
   const [company, setCompany] = useState({ name: "a", description: "desc", website: "wens", founded: "2323", industry: "ssdd", location: "Unknown" });
@@ -27,6 +28,8 @@ function CompanyDetails() {
   }
 
   return (
+    <>
+    <ResponsiveAppBar></ResponsiveAppBar>
     <div className="p-6 mt-12 max-w-4xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <h1 className="text-3xl font-bold text-white mb-4">{company.name}</h1>
       <p className="text-white mb-4">{company.description}</p>
@@ -38,7 +41,7 @@ function CompanyDetails() {
       </div>
       <button
         onClick={() => alert(`Applying to ${company.name}`)} 
-        className="mt-6 inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+        className="mt-6 inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
       >
         Apply Now
       </button>
@@ -49,6 +52,8 @@ function CompanyDetails() {
         Back to Companies
       </Link>
     </div>
+    <Footer></Footer>
+    </>
   );
 }
 
