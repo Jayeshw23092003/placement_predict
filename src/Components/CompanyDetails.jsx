@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 function CompanyDetails() {
   const { id } = useParams(); 
-  const [company, setCompany] = useState({name : "a", desc : "desc", website : "wens", founded : "2323", industry : "ssdd"});
+  const [company, setCompany] = useState({ name: "a", description: "desc", website: "wens", founded: "2323", industry: "ssdd", location: "Unknown" });
 
   useEffect(() => {
     const fetchCompanyDetails = async () => {
@@ -27,14 +27,14 @@ function CompanyDetails() {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{company.name}</h1>
-      <p className="text-gray-700 dark:text-gray-400 mb-4">{company.description}</p>
+    <div className="p-6 mt-12 max-w-4xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <h1 className="text-3xl font-bold text-white mb-4">{company.name}</h1>
+      <p className="text-white mb-4">{company.description}</p>
       <div className="space-y-4">
-        <p><strong>Location:</strong> {company.location}</p>
-        <p><strong>Industry:</strong> {company.industry}</p>
-        <p><strong>Founded:</strong> {company.founded}</p>
-        <p><strong>Website:</strong> <a href={company.website} className="text-blue-600 hover:underline">{company.website}</a></p>
+        <p><strong className="text-white">Location:</strong> <span className="text-white">{company.location}</span></p>
+        <p><strong className="text-white">Industry:</strong> <span className="text-white">{company.industry}</span></p>
+        <p><strong className="text-white">Founded:</strong> <span className="text-white">{company.founded}</span></p>
+        <p><strong className="text-white">Website:</strong> <a href={company.website} className="text-blue-400 hover:underline">{company.website}</a></p>
       </div>
       <button
         onClick={() => alert(`Applying to ${company.name}`)} 
