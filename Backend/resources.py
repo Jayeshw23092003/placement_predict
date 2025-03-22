@@ -261,12 +261,13 @@ class ShortlistStudents(Resource):
 
         data = request.get_json()
         job_id = data.get('job_id')
-        max_students = data.get('max_students')
+        max_students = data.get('max_students', 10)
 
         if not all([job_id, max_students]):
             return {'error': 'All fields are required'}, 400
         
         job = Job.query.get(job_id)
+        max_students = min(max_students, len(job.users))
 
         if len(job.shortlist_students) < max_students:
             
