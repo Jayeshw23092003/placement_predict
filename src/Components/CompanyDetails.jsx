@@ -4,17 +4,9 @@ import { useParams, Link } from "react-router-dom";
 import { postData } from "../Controllers/ApiRequest";
 import ResponsiveAppBar from "./AppBar";
 import Footer from "./Footer";
-import { ConfettiComp } from "./Confetti";
 function CompanyDetails() {
   const { id } = useParams();
-  const [company, setCompany] = useState({
-    company_name: "Tech Innovators Ltd",
-    package_offered: "12 LPA",
-    job_role: "Software Engineer",
-    job_description:
-      "Develop and maintain web applications using modern frameworks. Collaborate with cross-functional teams to design scalable solutions.",
-    deadline: "2025-04-15",
-  });
+  const [company, setCompany] = useState();
 
 
   const ApplyToCompany = async () => {
@@ -34,23 +26,25 @@ function CompanyDetails() {
   };
   useEffect(() => {
     const fetchCompanyDetails = async () => {
+      console.log("Hey")
       try {
-        const response = await fetch(`https://localhost/company?id=${id}`); // Replace with your backend API endpoint
+        const response = await fetch(`http://localhost:5000/company?id=${id}`); 
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.json();
-        setCompany(data);
+        const json_reponse = await response.json();
+        console.log(json_reponse)
+        setCompany(json_reponse.data);
       } catch (error) {
         console.error("Error fetching company details:", error);
       }
     }
     fetchCompanyDetails();
-  }, [id]);
+  }, []);
 
-  // if (!company) {
-  //   return <div>Loading...</div>;
-  // }
+  if (!company) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

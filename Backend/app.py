@@ -39,6 +39,7 @@ api.add_resource(AddUserToJobResource, '/addUserToJob')
 api.add_resource(ShortlistStudents, '/shortlistStudents')
 api.add_resource(CompanyResource, '/company')
 
+
 if __name__ == '__main__':
     # with app.app_context():
     #     db.create_all()
