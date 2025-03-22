@@ -7,8 +7,14 @@ import Footer from "./Footer";
 function CompanyDetails() {
   const { id } = useParams();
   const [company, setCompany] = useState();
-
-
+  const [actor, setActor] = useState(0);
+  const [students, setStudents] = useState();
+  const shortListStudents=async()=>{
+    const data = {job_id : company.id, max_students : 1}
+    const api_url = "http://localhost:5000/shortlistStudents"
+    const response = await postData(api_url, data);
+    console.log(response)
+  }
   const ApplyToCompany = async () => {
     const user_id = localStorage.getItem("user_id");
     
@@ -27,6 +33,8 @@ function CompanyDetails() {
     }
   };
   useEffect(() => {
+    const actor = localStorage.getItem("actor");
+    setActor(actor)
     const fetchCompanyDetails = async () => {
       console.log("Hey")
       try {
@@ -71,12 +79,17 @@ function CompanyDetails() {
             <strong>Job Deadline:</strong> {company.deadline}
           </p>
         </div>
-        <button
+        {actor === "admin" ? <button
+          onClick={shortListStudents}
+          className="mt-6 inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300"
+        >
+          Shortlist Students
+        </button> : <button
           onClick={ApplyToCompany}
           className="mt-6 inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300"
         >
           Apply Now
-        </button>
+        </button>}
         <Link
           to="/"
           className="ml-4 inline-flex items-center rounded-lg bg-gray-600 px-4 py-2 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300"
