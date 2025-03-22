@@ -277,7 +277,7 @@ class ShortlistStudents(Resource):
             
             for stud in students:
                 if stud not in job.shortlist_students:
-                    job.users.append(stud)
+                    job.shortlist_students.append(stud)
                     db.session.commit()
 
         student_list = [

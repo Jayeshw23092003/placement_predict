@@ -47,6 +47,7 @@ const SubmitData = async (e) => {
         console.log("Response Data:", is_user.user.actor);
         const user_id = is_user.user.id;
         localStorage.setItem("user_id", user_id);
+        localStorage.setItem("actor", is_user.user.actor)
         if (is_user.user.actor) {
             alert("To Profile")
             Navigate("/companies_dashboard");
