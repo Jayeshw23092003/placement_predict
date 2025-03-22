@@ -7,7 +7,7 @@ function Features() {
         <div class="mx-auto px-5 py-12">
           <div class="mb-20 text-center">
             <h1 class="title-font mb-4 text-center text-2xl font-medium text-gray-900 sm:text-3xl">
-            🔥 Key Features of PlaceAI 🚀🎯
+            🔥 Key Features of CareerCatalyst 🚀🎯
             </h1>
           
           </div>

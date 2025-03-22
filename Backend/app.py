@@ -5,20 +5,15 @@ from models import db
 from resources import AddUserToJobResource, CompanyResource, JobResource, ShortlistStudents, UserLogin, UserRegistration
 import os
 from dotenv import load_dotenv
-
-
 app = Flask(__name__)
 api = Api(app)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-
 load_dotenv()
-
 host = os.getenv("MYSQL.HOST")
 port = os.getenv("MYSQL.PORT")
 user = os.getenv("MYSQL.USER")
 password = os.getenv("MYSQL.PASSWORD")
-database = os.getenv("MYSQL.DATABASE")
+database = os.getenv("MYSQL.PROJECT")
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}'
@@ -37,7 +32,6 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 
 db.init_app(app)
-
 api.add_resource(UserRegistration, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobResource, '/job')

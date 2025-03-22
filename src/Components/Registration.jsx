@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { ORIGIN } from "./Constants.js";
 import { content } from "flowbite-react/tailwind";
+import ResponsiveAppBar from "./AppBar.jsx";
 
 function Registration() {
   const [data, setData] = useState({
@@ -25,63 +26,54 @@ function Registration() {
     }));
   };
 
-  const register = async () => {
-
+  const register = async (event) => {
+   
     const actor = document.getElementsByClassName("default-radio");
-    
+
     // Determine if the user is a student
     let is_student = Array.from(actor).some(i => i.checked && i.value === "student");
-  
-    // Update state (asynchronously)
-    setData((prevData) => ({
-      ...prevData,
-      actor: !is_student, // If student, actor is false; else true
-    }));
-  
+
+    // Use local variable to avoid async state update issue
+    const updatedData = { 
+        ...data, 
+        actor: !is_student 
+    };
+
     console.log("Is Student:", is_student);
-  
-    let url = ORIGIN + "/register";
-    console.log("Before Sending:", { ...data, actor: !is_student }); // Ensure latest state
-  
-    alert("Jayesh");
-  
-    // Wait for the state update to complete before sending the request
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        full_name: data.full_name,
-        email: data.email,
-        password: data.password,
-        actor: !is_student, // Use updated value directly
-      }),
-    });
-  
-    // Handle response
-    const json_response = await response.json();
-    // console.log(json_response)
-    // console.log(response.status)
-    if (response.status == 200) {
-      Navigate("/login");
-    } else {
-      alert("Some internal issue has occurred");
+    console.log("Before Sending:", updatedData); // Ensure latest state
+
+    try {
+        const response = await fetch("http://localhost:5000/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedData),
+        });
+        const json_response = await response.json();
+        if (response.ok) {
+            Navigate("/login");
+        } else {
+            alert("Some internal issue has occurred");
+        }
+    } catch (error) {
+        console.error("Error during fetch:", error);
+        alert("Failed to connect to the server");
     }
-  };
-  
+};
+
 
   const Navigate = useNavigate();
 
   const SubmitData = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     register();
 
   };
 
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <div class="pt-24">
         <h1 class="text-center text-2xl font-bold">Register Here</h1>
       </div>

@@ -3,6 +3,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ORIGIN } from "./Constants";
 import { useNavigate } from "react-router-dom";
+import ResponsiveAppBar from "./AppBar";
+
 const url = ORIGIN+"/login"
 function Login() {
   const Navigate = useNavigate();
@@ -20,37 +22,44 @@ function Login() {
     }))
   }
 
-  const SubmitData=async(e)=>{
-    e.preventDefault()
-    console.log(data)
-    alert("Jayesh")
-    const is_user_ = await fetch(url, {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
-      },
-      body : JSON.stringify({email : data.email, password : data.password})
-    })
-    const is_user = await is_user_.json()
-    console.log(is_user)
-    if(!is_user)
-    {
-      alert("Invalid Credentials")
+ 
+
+const SubmitData = async (e) => {
+    e.preventDefault();  // Prevents default form submission
+    console.log(data);
+    
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: data.email, password: data.password })
+        });
+        if (!response.ok) {
+            console.log("Error:", response.status);
+            alert("Invalid Credentials");
+            return;
+        }
+        localStorage.setItem("login", true)
+        const is_user = await response.json();
+        console.log("Response Data:", is_user.user.actor);
+        if (is_user.user.actor) {
+            alert("To Profile")
+            Navigate("/companies_dashboard");
+        } else {
+            Navigate("/resume");
+        }
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Failed to connect to the server");
     }
-    else{
-      if(is_user.user.actor)
-      {
-        Navigate("/profile")
-      }
-      else
-      {
-        Navigate("/resume")
-      }
-    }
-  }
+};
+
   return (
     <div>
-      <Header></Header>
+      <ResponsiveAppBar></ResponsiveAppBar>
       <section class="bg-gray-50 dark:bg-gray-900">
         <div class="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
           <a
