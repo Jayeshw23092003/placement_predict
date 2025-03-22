@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { postData } from "../Controllers/ApiRequest";
@@ -14,6 +15,7 @@ function CompanyDetails() {
       "Develop and maintain web applications using modern frameworks. Collaborate with cross-functional teams to design scalable solutions.",
     deadline: "2025-04-15",
   });
+
 
   const ApplyToCompany = async () => {
     const uidAndJobid = { job_id: company.id, user_id: id };
@@ -54,8 +56,7 @@ function CompanyDetails() {
   return (
     <div>
       
-        <ConfettiComp></ConfettiComp>
-      
+       
       <ResponsiveAppBar></ResponsiveAppBar>
       <div className="mx-auto mt-[4rem] min-h-screen max-w-4xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
@@ -87,8 +88,9 @@ function CompanyDetails() {
         >
           Back to Companies
         </Link>
-      </div>
-      <Footer></Footer>
+
+    </div>
+    <Footer></Footer>
     </div>
   );
 }

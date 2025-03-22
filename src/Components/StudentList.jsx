@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Footer from "./Footer";
+import ResponsiveAppBar from "./AppBar";
 const StudentList = () => {
   const [students, setStudents] = useState([]);
 
@@ -37,6 +38,7 @@ const StudentList = () => {
   }, []);
 
   return (
+    <><ResponsiveAppBar />
     <div className="p-6 flex justify-center">
       <div className="w-full max-w-3xl">
         <h1 className="text-2xl font-bold mb-6 text-gray-600 text-center">
@@ -44,7 +46,7 @@ const StudentList = () => {
         </h1>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
-            <thead className="bg-gray-50 dark:bg-blue-600">
+            <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
                 <th className="py-3 px-4 text-left text-sm font-semibold text-white uppercase border-r border-gray-200">
                   ID
@@ -81,6 +83,9 @@ const StudentList = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 
