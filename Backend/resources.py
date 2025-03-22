@@ -298,6 +298,6 @@ class CompanyResource(Resource):
         job = Job.query.get(id)
 
         if not job:
-            return {'error': 'User not found'}, 400
+            return {'error': 'Job not found'}, 400
         
         return job, 200
