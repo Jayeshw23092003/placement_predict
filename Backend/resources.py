@@ -300,4 +300,12 @@ class CompanyResource(Resource):
         if not job:
             return {'error': 'Job not found'}, 400
         
-        return job, 200
+        job_dict = {
+                "id": job.id,
+                "company_name": job.company_name,
+                "package_offered": job.package_offered,
+                "job_role": job.job_role,
+                "job_description": job.job_description
+            }
+        
+        return job_dict, 200
