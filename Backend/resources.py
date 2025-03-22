@@ -223,17 +223,19 @@ class JobResource(Resource):
 class AddUserToJobResource(Resource):
 
     def post(self):
-
+        print("HEu");
         args = request.get_json()
         
         user_id = args.get('user_id')
         job_id = args.get('job_id')
-
+        print(user_id, job_id)
         if not all([user_id, job_id]):
             return {'error': 'All fields are required'}, 400
         
         user = User.query.get(user_id)
         job = Job.query.get(job_id)
+        
+        print(user, job)
 
         if not user:
             return {"message": f"User with ID {user_id} not found"}, 404
@@ -289,6 +291,7 @@ class CompanyResource(Resource):
     def get(self):
 
         id = request.args.get('id')
+        print(id)
 
         if not id:
             return {'error': 'All fields are required'}, 400

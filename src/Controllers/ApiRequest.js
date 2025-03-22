@@ -1,5 +1,6 @@
 export const postData=async(api, data)=>{
     try{
+        console.log(data)
         const reponse = await fetch(api,{
             method : "POST",
             headers : {
@@ -7,9 +8,9 @@ export const postData=async(api, data)=>{
             },
             body : JSON.stringify(data)
         });
-        if(Response.ok)
+        if(reponse.ok)
         {
-            const json_reponse = Response.json();
+            const json_reponse = response.json();
             return json_reponse;
         }
         return null;
