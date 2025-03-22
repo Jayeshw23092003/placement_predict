@@ -10,15 +10,17 @@ function CompanyDetails() {
 
 
   const ApplyToCompany = async () => {
-    const uidAndJobid = { job_id: company.id, user_id: id };
+    const user_id = localStorage.getItem("user_id");
+    
+    const uidAndJobid = { job_id: id, user_id:user_id};
 
     try {
       const api_url = "http://localhost:5000/addUserToJob";
       const response = await postData(api_url, uidAndJobid);
-      if (response.ok) {
-        console.log("Data sent to backend");
+      
+        console.log("Data sent to backend", response);
         alert("Congratulations! You have successfully applied for the Job")
-      }
+      
     } catch (err) {
       alert(err);
       console.log(err);
@@ -34,7 +36,7 @@ function CompanyDetails() {
         }
         const json_reponse = await response.json();
         console.log(json_reponse)
-        setCompany(json_reponse.data);
+        setCompany(json_reponse);
       } catch (error) {
         console.error("Error fetching company details:", error);
       }

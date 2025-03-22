@@ -52,10 +52,10 @@ function CompanyList() {
     <div>
       <ResponsiveAppBar />
 
-      <div className="mx-20 mt-4 rounded-lg border-2 border-gray-300 bg-blue-950 p-8 shadow-2xl">
+      <div className="mx-20 mt-[4rem] rounded-lg border-2 border-gray-300 bg-blue-950 p-8 shadow-2xl">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="mt-[5rem]  absolute right-40 top-12 mb-4 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 "
+          className=" absolute right-40 top-22 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 "
         >
           Add Company
         </button>
@@ -70,7 +70,7 @@ function CompanyList() {
         )}
 
         
-        <div className="m-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ">
+        <div className="m-8 mt-[5rem] grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ">
           {companies.map((company) => (
             <div
               key={company.id}
