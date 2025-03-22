@@ -104,7 +104,7 @@ function CompanyList() {
       <div className=" mx-20 mt-4 border-2 border-gray-600 p-8 shadow-2xl">
         <button
           onClick={() => setIsModalOpen(true)}
-          className=" absolute right-40 top-12 mb-4 mt-2 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 "
+          className="mt-[5rem]  absolute right-40 top-12 mb-4 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 "
         >
           Add Company
         </button>
@@ -131,22 +131,22 @@ function CompanyList() {
                 <h5 className="mb-5 text-[1.2rem] font-bold tracking-tight text-white">
                   {company.company_name}
                 </h5>
-                <p className="mb-3 text-sm font-normal text-gray-600">
+                <p className="mb-3 pt-[2rem] mt-[2rem] text-sm font-normal text-gray-600">
                   {company.job_description}
                 </p>
 
                 <div className="space-y-2 text-sm text-gray-600">
                   <p className="text-sm text-gray-600">
-                    <strong>Package:</strong> {company.package}
+                    <strong>Package:</strong> {company.package_offered}
                   </p>
                   <p className="text-sm text-gray-600">
                     <strong>Job Role:</strong> {company.job_role}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm pt-[1rem] text-gray-600">
                     <strong>Job Description:</strong> {company.job_description}
                   </p>
                   <p className="text-sm text-gray-600">
-                    <strong>Deadline:</strong> {company.job_deadline}
+                    <strong>Job Deadline:</strong> {company.deadline}
                   </p>
                 </div>
 
