@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import Footer from "./Footer";
+import ResponsiveAppBar from "./AppBar";
 const StudentDetails = () => {
   const { id } = useParams();
   const [student, setStudent] = useState(null);
@@ -194,6 +195,7 @@ const StudentDetails = () => {
   };
 
   return (
+    <><ResponsiveAppBar />
     <div className="p-6 flex justify-center">
       <div className="w-full max-w-6xl">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 ">
@@ -260,6 +262,9 @@ const StudentDetails = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 

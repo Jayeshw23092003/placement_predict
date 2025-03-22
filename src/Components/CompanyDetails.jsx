@@ -37,7 +37,7 @@ function CompanyDetails() {
         <p><strong>Website:</strong> <a href={company.website} className="text-blue-600 hover:underline">{company.website}</a></p>
       </div>
       <button
-        onClick={() => alert(`Applying to ${company.name}`)} // Replace with your apply logic
+        onClick={() => alert(`Applying to ${company.name}`)} 
         className="mt-6 inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
       >
         Apply Now

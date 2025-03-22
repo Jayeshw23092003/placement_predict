@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import Footer from "./Footer";
+import ResponsiveAppBar from "./AppBar";
 const StudentList = () => {
   const [students, setStudents] = useState([]);
 
@@ -37,6 +38,7 @@ const StudentList = () => {
   }, []);
 
   return (
+    <><ResponsiveAppBar />
     <div className="p-6 flex justify-center">
       <div className="w-full max-w-3xl">
         <h1 className="text-2xl font-bold mb-6 text-gray-600 text-center">
@@ -81,6 +83,9 @@ const StudentList = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+
+    </>
   );
 };
 
