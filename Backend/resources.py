@@ -11,14 +11,16 @@ from datetime import datetime
 
 class UserLogin(Resource):
     
+    
     def post(self):
 
         data = request.get_json()
 
-        if not data or 'email' not in data or 'password' not in data:
+        req_field = ['email','password']
+
+        if not all(field in data for field in req_field):
             return {'error': 'Email and password are required'}, 400
         
-
         email = data['email']
         password = data['password']
 
@@ -223,7 +225,6 @@ class AddUserToJobResource(Resource):
     def post(self):
 
         args = request.get_json()
-
         
         user_id = args.get('user_id')
         job_id = args.get('job_id')
@@ -263,14 +264,40 @@ class ShortlistStudents(Resource):
         if not all([job_id, max_students]):
             return {'error': 'All fields are required'}, 400
         
-        shortlisted_ids = Shortlist(job_id=job_id, max_students=max_students).get_shortlisted_stuent_ids()
+        job = Job.query.get(job_id)
 
-        students = User.query.filter(User.id.in_(shortlisted_ids)).all()
-        
+        if len(job.shortlist_students) < max_students:
+            
+            shortlisted_ids = Shortlist(job_id=job_id, max_students=max_students).get_shortlisted_stuent_ids()
+
+            students = User.query.filter(User.id.in_(shortlisted_ids)).all()
+            
+            for stud in students:
+                if stud not in job.shortlist_students:
+                    job.users.append(stud)
+                    db.session.commit()
+
         student_list = [
-            {"id": student.id, "name": student.name} for student in students
+            {"id": student.id, "name": student.name, "college_name": student.college_name, "email": student.email } for student in job.shortlist_students
         ]
 
         return {"shortlisted_students": student_list}, 200
 
         
+class CompanyResource(Resource):
+
+    def get(self):
+
+        id = request.args.get('id')
+
+        if not id:
+            return {'error': 'All fields are required'}, 400
+        
+        id = int(id)
+        
+        user = User.query.get(id)
+
+        if not user:
+            return {'error': 'User not found'}, 400
+        
+        return user, 200

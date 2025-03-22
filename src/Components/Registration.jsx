@@ -26,6 +26,7 @@ function Registration() {
   };
 
   const register = async () => {
+
     const actor = document.getElementsByClassName("default-radio");
     
     // Determine if the user is a student
@@ -60,7 +61,9 @@ function Registration() {
   
     // Handle response
     const json_response = await response.json();
-    if (json_response.status === 200) {
+    // console.log(json_response)
+    // console.log(response.status)
+    if (response.status == 200) {
       Navigate("/login");
     } else {
       alert("Some internal issue has occurred");
@@ -70,7 +73,8 @@ function Registration() {
 
   const Navigate = useNavigate();
 
-  const SubmitData = () => {
+  const SubmitData = (e) => {
+    e.preventDefault()
     register();
 
   };
@@ -212,7 +216,6 @@ function Registration() {
           </div>
         </div>
         <button
-          type="submit"
           onClick={SubmitData}
           class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

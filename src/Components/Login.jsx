@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ORIGIN } from "./Constants";
 import { useNavigate } from "react-router-dom";
-const url = ORIGIN+"/register"
+const url = ORIGIN+"/login"
 function Login() {
   const Navigate = useNavigate();
   const [data, setData] = useState(
@@ -20,7 +20,8 @@ function Login() {
     }))
   }
 
-  const SubmitData=async()=>{
+  const SubmitData=async(e)=>{
+    e.preventDefault()
     console.log(data)
     alert("Jayesh")
     const is_user_ = await fetch(url, {
@@ -28,15 +29,16 @@ function Login() {
       headers : {
         "Content-Type" : "application/json"
       },
-      data : JSON.stringify({email : data.email, password : data.password})
+      body : JSON.stringify({email : data.email, password : data.password})
     })
     const is_user = await is_user_.json()
+    console.log(is_user)
     if(!is_user)
     {
       alert("Invalid Credentials")
     }
     else{
-      if(is_user.actor)
+      if(is_user.user.actor)
       {
         Navigate("/profile")
       }

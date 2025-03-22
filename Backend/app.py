@@ -2,7 +2,7 @@ from flask import Flask, request, Response
 from flask_restful import Api
 from flask_cors import CORS
 from models import db
-from resources import AddUserToJobResource, JobResource, ShortlistStudents, UserLogin, UserRegistration
+from resources import AddUserToJobResource, CompanyResource, JobResource, ShortlistStudents, UserLogin, UserRegistration
 import os
 from dotenv import load_dotenv
 
@@ -43,6 +43,9 @@ api.add_resource(UserLogin, '/login')
 api.add_resource(JobResource, '/job')
 api.add_resource(AddUserToJobResource, '/addUserToJob')
 api.add_resource(ShortlistStudents, '/shortlistStudents')
+api.add_resource(CompanyResource, '/company')
 
 if __name__ == '__main__':
+    # with app.app_context():
+    #     db.create_all()
     app.run(debug=True)
