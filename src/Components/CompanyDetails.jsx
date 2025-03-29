@@ -9,7 +9,7 @@ function CompanyDetails() {
   const [company, setCompany] = useState();
   const [actor, setActor] = useState(0);
   const [students, setStudents] = useState();
-  const shortListStudents=async()=>{
+  const shortListStudaents=async()=>{
     const data = {job_id : company.id, max_students : 1}
     const api_url = "http://localhost:5000/shortlistStudents"
     const response = await postData(api_url, data);
@@ -63,7 +63,7 @@ function CompanyDetails() {
        
       <ResponsiveAppBar></ResponsiveAppBar>
       <div className="mx-auto mt-[4rem] min-h-screen max-w-4xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="mb-4 text-3xl font-bold text-white-900 dark:text-white">
           {company.company_name}
         </h1>
         <p className="mb-4 pt-[1rem] text-gray-700 dark:text-gray-400">
