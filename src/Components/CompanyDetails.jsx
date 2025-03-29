@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { postData } from "../Controllers/ApiRequest";
@@ -9,7 +8,7 @@ function CompanyDetails() {
   const [company, setCompany] = useState();
   const [actor, setActor] = useState(0);
   const [students, setStudents] = useState();
-  const shortListStudaents=async()=>{
+  const shortListStudents=async()=>{
     const data = {job_id : company.id, max_students : 1}
     const api_url = "http://localhost:5000/shortlistStudents"
     const response = await postData(api_url, data);
