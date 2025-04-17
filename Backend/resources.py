@@ -223,7 +223,6 @@ class JobResource(Resource):
 class AddUserToJobResource(Resource):
 
     def post(self):
-        print("HEu");
         args = request.get_json()
         
         user_id = args.get('user_id')
@@ -313,3 +312,25 @@ class CompanyResource(Resource):
             }
         
         return job_dict, 200
+    
+
+    def post(self):
+
+        data = request.get_json()
+        id = data.get('job_id')
+        
+        if not id:
+            return {'error': 'All fields are required'}, 400
+        
+        id = int(id)
+        
+        job = Job.query.get(id)
+
+        if not job:
+            return {'error': 'Job not found'}, 400
+        
+        students_applied = [
+            {"id": student.id, "name": student.name, "college_name": student.college_name, "email": student.email } for student in job.users
+        ]
+
+        return {'students_applied': students_applied}, 200
