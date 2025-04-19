@@ -67,6 +67,9 @@ function UploadResume() {
     },
   });
 
+  const submitStudentsData=()=>{
+    
+  }
   const handleChange = (section, field, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -383,7 +386,7 @@ function UploadResume() {
               <div className="next-btn">
                 <Button
                   variant="contained"
-                  onClick={() => alert(JSON.stringify(formData))}
+                  onClick={() => submitStudentsData()}
                 >
                   Submit
                 </Button>

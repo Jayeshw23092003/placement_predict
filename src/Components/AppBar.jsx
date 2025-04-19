@@ -18,6 +18,7 @@ const pages = ["Home", "Companies", "Students"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
+  const [isUser, setIsUser] = React.useState(false);
   const Navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -39,7 +40,9 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const navigateToResumeDashboard=()=>{
+    Navigate("/students_profile")
+  }
   const navigateToCompaniesDashboard = () => {
     Navigate("/companies_dashboard");
     setAnchorElNav(null);
@@ -54,6 +57,14 @@ function ResponsiveAppBar() {
   };
   React.useEffect(() => {
     const isLoggedIn = localStorage.getItem("login");
+    const actor = localStorage.getItem("actor");
+    if(actor)
+    {
+      setIsUser(false);
+    }
+    else{
+      setIsUser(true);
+    }
     if (isLoggedIn) {
       setLogin(isLoggedIn);
     }
@@ -98,12 +109,17 @@ function ResponsiveAppBar() {
                   >
                     Companies
                   </Button>
-                  <Button
+                  {isUser ? <Button
                     onClick={navigateToStudentsDashboard}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >
                     Students
-                  </Button>
+                  </Button> : <Button
+                    onClick={navigateToResumeDashboard}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    Fill Form
+                  </Button>}
                 </Box>
               )}
             </div>

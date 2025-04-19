@@ -12,63 +12,45 @@ function Registration() {
     email: "",
     password: "",
     repeat_password: "",
-    actor : true
+    actor: true,
   });
- 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setData((prevData) => ({
       ...prevData,
-      [name]: value, 
-      actor: value === "student" ? false : true, 
+      [name]: name === "actor" ? value === "true" : value,
     }));
   };
 
-  const register = async (event) => {
-   
-    const actor = document.getElementsByClassName("default-radio");
-
-    // Determine if the user is a student
-    let is_student = Array.from(actor).some(i => i.checked && i.value === "student");
-
-    // Use local variable to avoid async state update issue
-    const updatedData = { 
-        ...data, 
-        actor: !is_student 
-    };
-
-    console.log("Is Student:", is_student);
-    console.log("Before Sending:", updatedData); // Ensure latest state
-
+  const register = async () => {
     try {
-        const response = await fetch("http://localhost:5000/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedData),
-        });
-        const json_response = await response.json();
-        if (response.ok) {
-            Navigate("/login");
-        } else {
-            alert("Some internal issue has occurred");
-        }
-    } catch (error) {
-        console.error("Error during fetch:", error);
-        alert("Failed to connect to the server");
-    }
-};
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
+      const json_response = await response.json();
+      if (response.ok) {
+        Navigate("/login");
+      } else {
+        alert("Some internal issue has occurred");
+      }
+    } catch (error) {
+      console.error("Error during fetch:", error);
+      alert("Failed to connect to the server");
+    }
+  };
 
   const Navigate = useNavigate();
 
   const SubmitData = (e) => {
     e.preventDefault();
     register();
-
   };
 
   return (
@@ -177,33 +159,23 @@ function Registration() {
                 id="default-radio-1"
                 type="radio"
                 onChange={handleChange}
-                value="student"
-                name="default-radio"
-                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                value="false"
+                name="actor"
+                className="default-radio ..."
               />
-              <label
-                for="default-radio-1"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Student
-              </label>
+              <label htmlFor="default-radio-1">Student</label>
             </div>
             <div class="flex items-center">
               <input
-                checked
                 id="default-radio-2"
                 type="radio"
-                value="admin"
                 onChange={handleChange}
-                name="default-radio"
-                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+                value="true"
+                name="actor"
+                defaultChecked
+                className="default-radio ..."
               />
-              <label
-                for="default-radio-2"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Admin
-              </label>
+              <label htmlFor="default-radio-2">Admin</label>
             </div>
           </div>
         </div>

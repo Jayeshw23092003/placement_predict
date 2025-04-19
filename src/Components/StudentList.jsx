@@ -8,27 +8,19 @@ const StudentList = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const dummyData = [
-          {
-            id: 1,
-            name: "John Doe",
-            collegeName: "ABC University",
-          },
-          {
-            id: 2,
-            name: "Jane Smith",
-            collegeName: "XYZ College",
-          },
-          {
-            id: 3,
-            name: "Alice Johnson",
-            collegeName: "PQR Institute",
-          },
-        ];
-
-        setTimeout(() => {
-          setStudents(dummyData);
-        }, 1000);
+        const id = localStorage.getItem("company_id");
+        const response = await fetch(`http://localhost:5000/registered_students?id=${id}`);
+        let json_response;
+        if(response)
+        {
+          json_response = await response.json();
+          setStudents(json_response.data);
+        }
+        else
+        {
+          alert("No Students are registered for this")
+        }
+        
       } catch (error) {
         console.error("Error fetching students:", error);
       }

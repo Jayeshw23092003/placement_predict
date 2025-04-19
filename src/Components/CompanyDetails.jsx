@@ -1,10 +1,13 @@
 
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useParams, Link } from "react-router-dom";
 import { postData } from "../Controllers/ApiRequest";
 import ResponsiveAppBar from "./AppBar";
 import Footer from "./Footer";
+import { Button } from "flowbite-react";
 function CompanyDetails() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [company, setCompany] = useState();
   const [actor, setActor] = useState(0);
@@ -14,6 +17,11 @@ function CompanyDetails() {
     const api_url = "http://localhost:5000/shortlistStudents"
     const response = await postData(api_url, data);
     console.log(response)
+  }
+
+  const goBack=()=>
+  {
+    navigate(-1);
   }
   const ApplyToCompany = async () => {
     const user_id = localStorage.getItem("user_id");
@@ -91,12 +99,12 @@ function CompanyDetails() {
         >
           Apply Now
         </button>}
-        <Link
-          to="/"
-          className="ml-4 inline-flex items-center rounded-lg bg-gray-600 px-4 py-2 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300"
+        <Button
+          onClick = {()=>goBack()}
+          className="ml-4 inline-flex items-center rounded-lg bg-gray-600 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300"
         >
           Back to Companies
-        </Link>
+        </Button>
 
     </div>
     <Footer></Footer>
