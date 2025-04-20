@@ -110,6 +110,7 @@ class UserRegistration(Resource):
         """
 
         data = request.form
+        print(data)
         if not data or 'id' not in data:
             return {'error': 'User ID is required'}, 400
 
@@ -124,7 +125,7 @@ class UserRegistration(Resource):
         if not user:
             return {'error': 'User not found'}, 404
 
-        user.name = data.get('full_name', user.name)
+        user.name = data.get('name', user.name)
         user.email = data.get('email', user.email)
         user.college_name = data.get('college_name', user.college_name)
 
@@ -167,18 +168,20 @@ class JobResource(Resource):
     def post(self):
 
         data = request.get_json()
-        company_name = data.get('company_name')
-        package_offered = data.get('package_offered')
-        job_role = data.get('job_role')
-        job_description = data.get('job_description')
+        print(data)
+        company_name = data.get('name')
+        package_offered = data.get('package')
+        job_role = data.get('jobRole')
+        job_description = data.get('jobDesc')
         deadline_str = data.get('deadline')  # date format "%Y-%m-%d %H:%M:%S"
 
         if not all([company_name, package_offered, job_role, job_description, deadline_str]):
             return {'error': 'All fields are required'}, 400
 
         try:
-            deadline = datetime.strptime(deadline_str, r"%Y-%m-%d %H:%M:%S")
+            deadline = datetime.strptime(deadline_str, r"%Y-%m-%d")
         except ValueError:
+            print("Date errro")
             return {'error': 'Invalid date format. Use YYYY-MM-DD'}, 400
 
         new_job = Job(
@@ -227,20 +230,18 @@ class AddUserToJobResource(Resource):
         
         user_id = args.get('user_id')
         job_id = args.get('job_id')
-        print(user_id, job_id)
+
         if not all([user_id, job_id]):
             return {'error': 'All fields are required'}, 400
         
         user = User.query.get(user_id)
         job = Job.query.get(job_id)
         
-        print(user, job)
-
         if not user:
             return {"message": f"User with ID {user_id} not found"}, 404
         if not job:
             return {"message": f"Job with ID {job_id} not found"}, 404
-        
+                
         if job.deadline < datetime.now():
             return {"message": f"Deadline passed away. It was {job.deadline}"}, 400
 
@@ -317,6 +318,7 @@ class CompanyResource(Resource):
     def post(self):
 
         data = request.get_json()
+        print(data)
         id = data.get('job_id')
         
         if not id:

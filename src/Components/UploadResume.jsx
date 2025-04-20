@@ -7,7 +7,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "./UploadResume.css";
 import ResponsiveAppBar from "./AppBar";
+import { putRequest } from "../Controllers/ApiRequest";
+import { useNavigate } from "react-router-dom";
 function UploadResume() {
+  const navigate = useNavigate();
+  const apiurl = "http://127.0.0.1:5000/register"
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -20,12 +24,13 @@ function UploadResume() {
     width: 1,
   });
   const [steps, setSteps] = useState(1);
+  const [resumeFile, setResumeFile] = React.useState(null);
   const [formData, setFormData] = useState({
     personal: {
       name: "",
       email: "",
       phone: "",
-      gender: "",
+      college_name: "",
       category: "",
     },
     academicDetails: {
@@ -67,10 +72,47 @@ function UploadResume() {
     },
   });
 
-  const submitStudentsData=()=>{
+  const submitStudentsData=async()=>{
+    const StudentsformData = new FormData();
+    Object.entries(formData.personal).forEach(([key, value])=>{
+      console.log(key, value)
+      StudentsformData.append(`${key}`, value)
+    })
+    Object.entries(formData.academicDetails).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    Object.entries(formData.skillsAndCertifications).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    Object.entries(formData.workAndExperience).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    Object.entries(formData.extracurricular).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    Object.entries(formData.preferences).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    Object.entries(formData.behavioralAndPsychometric).forEach(([key, value])=>{
+      StudentsformData.append(`${key}`, value);
+    })
+    StudentsformData.append("resume",resumeFile);
     
+    for(let pair of StudentsformData.entries())
+    {
+      console.log(pair[0], pair[1])
+    }
+    const user_id = localStorage.getItem("user_id");
+    StudentsformData.append("id", user_id)
+    const response = await putRequest(apiurl, StudentsformData);
+    if(response)
+    {
+      console.log(response)
+      navigate("/companies_dashboard")
+    }
   }
   const handleChange = (section, field, value) => {
+    
     setFormData((prev) => ({
       ...prev,
       [section]: {
@@ -80,6 +122,11 @@ function UploadResume() {
     }));
   };
 
+  const handleFileChange=(e)=>{
+    let file_value = e.target.files[0];
+    setResumeFile(file_value)
+    console.log(file_value)
+  }
   const handleNext = () => setSteps((prev) => prev + 1);
   const handlePrev = () => setSteps((prev) => prev - 1);
 
@@ -106,8 +153,9 @@ function UploadResume() {
                     Upload files
                     <VisuallyHiddenInput
                       type="file"
-                      onChange={(event) => console.log(event.target.files)}
+                      onChange={(e) => handleFileChange(e)}
                       multiple
+                      
                     />
                   </Button>
                 </div>
@@ -144,11 +192,11 @@ function UploadResume() {
                   fullWidth
                 />
                 <TextField
-                  label="Gender"
+                  label="College Name"
                   variant="filled"
-                  value={formData.personal.gender}
+                  value={formData.personal.college_name}
                   onChange={(e) =>
-                    handleChange("personal", "gender", e.target.value)
+                    handleChange("personal", "college_name", e.target.value)
                   }
                   fullWidth
                 />

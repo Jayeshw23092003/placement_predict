@@ -57,12 +57,14 @@ function ResponsiveAppBar() {
   };
   React.useEffect(() => {
     const isLoggedIn = localStorage.getItem("login");
-    const actor = localStorage.getItem("actor");
-    if(actor)
+    let actor =localStorage.getItem("actor");
+    
+    console.log(actor)
+    if(actor === "false")
     {
       setIsUser(false);
     }
-    else{
+    else if(actor === "true"){
       setIsUser(true);
     }
     if (isLoggedIn) {
@@ -109,12 +111,7 @@ function ResponsiveAppBar() {
                   >
                     Companies
                   </Button>
-                  {isUser ? <Button
-                    onClick={navigateToStudentsDashboard}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    Students
-                  </Button> : <Button
+                  {!isUser && <Button
                     onClick={navigateToResumeDashboard}
                     sx={{ my: 2, color: "white", display: "block" }}
                   >

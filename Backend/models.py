@@ -19,7 +19,7 @@ shortlist_table = db.Table(
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100),  nullable=False)
     college_name = db.Column(db.String(200))
     resume_text = db.Column(db.Text)
     password = db.Column(db.String(20))

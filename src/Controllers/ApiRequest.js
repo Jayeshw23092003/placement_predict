@@ -10,9 +10,14 @@ export const postData=async(api, data)=>{
         });
         console.log("Reponse is ")
         console.log(response);
+        
+        const json_reponse = await response.json();
+        console.log("Json_reponse is ")
+        console.log(json_reponse);
         if(response.ok)
         {
-            const json_reponse = response.json();
+            const json_reponse = await response.json();
+            
             return json_reponse;
         }
         return null;
@@ -22,3 +27,25 @@ export const postData=async(api, data)=>{
         return null
     }
 }
+
+export const putRequest = async (api, data) => {
+    try {
+      console.log(data);
+  
+      const response = await fetch(api, {
+        method: 'PUT',
+        body: data, // let the browser set the correct headers
+      });
+  
+      if (response.ok) {
+        const json_response = await response.json(); // await this
+        return json_response;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      alert(e);
+      return null;
+    }
+  };
+  

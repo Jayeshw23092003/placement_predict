@@ -46,12 +46,22 @@ const SubmitData = async (e) => {
         console.log()
         console.log("Response Data:", is_user.user.actor);
         const user_id = is_user.user.id;
+        console.log("Pre Login")
+        console.log(typeof(user_id))
         localStorage.setItem("user_id", user_id);
-        localStorage.setItem("actor", is_user.user.actor)
-        if (is_user.user.actor) {
+        localStorage.setItem("actor", JSON.stringify(is_user.user.actor))
+        const actor_value = localStorage.getItem("actor")
+        console.log("If else ki baat hai")
+        console.log(actor_value)
+        console.log("Login Page")
+        console.log(typeof(actor_value))
+        console.log(actor_value)
+        if (actor_value === "true") {
+            console.log(actor_value)
             alert("To Profile")
             Navigate("/companies_dashboard");
-        } else {
+        } else if(actor_value === "false") {
+            console.log(actor_value)
             Navigate("/resume");
         }
 

@@ -20,7 +20,7 @@ function Registration() {
 
     setData((prevData) => ({
       ...prevData,
-      [name]: name === "actor" ? value === "true" : value,
+      [name]: name === "actor" ? value === true : value,
     }));
   };
 

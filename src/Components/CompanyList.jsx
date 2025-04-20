@@ -8,8 +8,11 @@ import ResponsiveAppBar from "./AppBar";
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
+    const isAdmin = JSON.parse(localStorage.getItem("actor"));
+    setIsAdmin(isAdmin)
+    console.log("IsAdmin", typeof(isAdmin))
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:5000/job");
@@ -53,12 +56,12 @@ function CompanyList() {
       <ResponsiveAppBar />
 
       <div className="mx-20 mt-[4rem] rounded-lg border-2 border-gray-300 bg-blue-950 p-8 shadow-2xl">
-        <button
+        {isAdmin && <button
           onClick={() => setIsModalOpen(true)}
           className=" absolute right-40 top-22 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-gradient-to-r hover:from-red-400 hover:to-red-500 "
         >
           Add Company
-        </button>
+        </button>}
 
         {isModalOpen && (
           <div className="mb-6">

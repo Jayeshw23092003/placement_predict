@@ -17,7 +17,9 @@ function CompanyDetails() {
     const response = await postData(api_url, data);
     console.log(response)
   }
-
+  const showStudents=async()=>{
+    navigate("/students")
+  }
   const goBack=()=>
   {
     navigate(-1);
@@ -31,7 +33,7 @@ function CompanyDetails() {
       const api_url = "http://localhost:5000/addUserToJob";
       const response = await postData(api_url, uidAndJobid);
       
-        console.log("Data sent to backend", response);
+        console.log(response)
         alert("Congratulations! You have successfully applied for the Job")
       
     } catch (err) {
@@ -43,6 +45,7 @@ function CompanyDetails() {
     const actor = localStorage.getItem("actor");
     console.log(actor)
     setActor(actor)
+    localStorage.setItem("company_id", id)
     const fetchCompanyDetails = async () => {
       console.log("Hey")
       try {
@@ -88,10 +91,10 @@ function CompanyDetails() {
           </p>
         </div>
         {actor === "true" ? <button
-          onClick={shortListStudents}
+          onClick={showStudents}
           className="mt-6 inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300"
         >
-          Shortlist Students
+          Students
         </button> : <button
           onClick={ApplyToCompany}
           className="mt-6 inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300"
@@ -104,6 +107,7 @@ function CompanyDetails() {
         >
           Back to Companies
         </Button>
+        
 
     </div>
     <Footer></Footer>
