@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from models import db, User, Job
 from PyPDF2 import PdfReader
 from prediction import Shortlist
+from finetuned_model import shortlist
 import os
 from datetime import datetime
 
@@ -271,7 +272,7 @@ class ShortlistStudents(Resource):
 
         if len(job.shortlist_students) < max_students:
             
-            shortlisted_ids = Shortlist(job_id=job_id, max_students=max_students).get_shortlisted_stuent_ids()
+            shortlisted_ids = shortlist(job.job_description, job.users, max_students)
 
             students = User.query.filter(User.id.in_(shortlisted_ids)).all()
             
