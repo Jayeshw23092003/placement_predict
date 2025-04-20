@@ -8,8 +8,10 @@ def shortlist(job_description, students, max_stud):
   scores = []
 
   for stud in students:
-    resume_text_embedding = model.encode(stud['resume_text'])
-    scores.append([stud['id'], model.similarity(job_desc_embedding, resume_text_embedding)])
+    resume_text = stud.resume_text if stud.resume_test is not None else "I am a student"
+    
+    resume_text_embedding = model.encode(resume_text)
+    scores.append([stud.id, model.similarity(job_desc_embedding, resume_text_embedding)])
 
   scores.sort(key=lambda x: x[1], reverse=True)
 
